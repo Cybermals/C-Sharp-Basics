@@ -1,2 +1,4 @@
 # C-Sharp-Basics
-A set of tutorials that demonstrate the basics of the C# programming language.
+Learn the basics of the C# programming language with this tutorial series.
+
+For more tutorials, visit our website: https://cybermals.ml
