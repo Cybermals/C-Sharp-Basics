@@ -1,0 +1,31 @@
+﻿Lesson 2: Input
+===============
+
+ In the previous lesson, we learned the basic structure of a C# program and how to write output to a console window.
+However, most programs will get input from the user rather than just displaying some text and terminating. In this
+lesson, we will be getting input from the user. Add a new project called "Hello_" to your solution. Then copy the code 
+from our previous lesson into the new source code file. Now let's modify the body of our "Main" function like this:
+
+//Get the user's name
+Console.Write("Name: ");
+string name = Console.ReadLine();
+
+//Say hello
+Console.WriteLine("Hello " + name + "!");
+
+ Before we get input from the user, it is a good idea to indicate what we want the user to type. To do this, we will
+use the "Write" method of the "Console" class to display a prompt. The difference between "WriteLine" and "Write" is
+simple. "WriteLine" advances the text cursor to the next line after writing the given text. However, "Write" does not.
+After we display a prompt for the user, we will get what the user types by calling "Console.ReadLine". This method will
+return everything the user typed before pressing the Enter key. We can then store the result into a string variable
+called "name". A string is an object that contains text data. Variables are declared by giving the type followed by
+the variable name. We can then assign a value to the variable by using the "=" operator. Please note that we do not
+have to assign to a variable when it is first created. Also, we can assign a new value to a variable at any point in
+the program.
+ Once we have the user's name, we can say hello by adding 3 strings together. The "+" operator is used to add variables
+together. When we add strings together, we end up with a new string containing the original strings placed one after
+another in the order we added them. Other types of data can be added too, such as integers and floats.
+ If we build and run our new program, we will get a prompt for our name. And after we type our name and press Enter, we
+will get a friendly greeting from our new program.
+ In the next lesson, we will be learning how to use conditional statements to change what our program does based on the
+input it receives.

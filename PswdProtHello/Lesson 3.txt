@@ -1,0 +1,37 @@
+﻿Lesson 3: If Statements
+=======================
+
+ In the previous lesson, we learned how to get input from the user. However, most of the time a program will need to
+perform different actions based on user input rather than doing the same thing every time. In this lesson, we will
+learn how to change the flow of our program by using if statements.
+ Start by adding a new project called "PswdProtHello" to your solution. Then copy the code from the previous lesson
+into the new source code file. Next we will replace the contents of the "Main" function with this code:
+
+//Get username
+Console.Write("Name: ");
+string name = Console.ReadLine();
+
+//Get password
+Console.Write("Password: ");
+string pswd = Console.ReadLine();
+
+//Verify credentials
+if(name == "Dylan" && pswd == "cheetah")
+{
+    Console.WriteLine("Hello " + name + "!");
+}
+else
+{
+    Console.WriteLine("You aren't allowed here " + name + "!");
+}
+
+ We will start by getting the name and password of the current user. Next, we will need to verify the given user
+credentials. To do this, we will simply compare the given name with a given string and compare the given password
+with a given string. The "==" operator is used to compare 2 variables. If they are equal, the expression will
+evaluate true. If they are not equal, the expression will evaluate false. The "&&" operator indicates that the 
+expressions on both sides must be true in order for the entire expression to evaluate true. If the expression inside
+the parenthesis for the if statement evaluates true, the code inside the body of the if statement will be executed.
+If the expression evaluates false, the code inside the body of the else statement will be executed instead. Please
+note that the else statement is optional. In this program, we will only say hello to the user if their credentials were 
+successfully validated. Otherwise, we will tell them they aren't allowed here.
+ In the next lesson, we will explore how to define and use additional functions in our code.

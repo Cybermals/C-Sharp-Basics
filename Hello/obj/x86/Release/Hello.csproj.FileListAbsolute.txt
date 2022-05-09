@@ -1,0 +1,6 @@
+C:\Users\Dylan\Documents\Code\C#\DylanCheetah\Tutorials\Basics\Hello\bin\Release\Hello.exe
+C:\Users\Dylan\Documents\Code\C#\DylanCheetah\Tutorials\Basics\Hello\bin\Release\Hello.pdb
+C:\Users\Dylan\Documents\Code\C#\DylanCheetah\Tutorials\Basics\Hello\obj\x86\Release\Hello.exe
+C:\Users\Dylan\Documents\Code\C#\DylanCheetah\Tutorials\Basics\Hello\obj\x86\Release\Hello.pdb
+C:\Users\Dylan\Documents\Code\C#\DylanCheetah\Tutorials\Basics\bin\Release\Hello.exe
+C:\Users\Dylan\Documents\Code\C#\DylanCheetah\Tutorials\Basics\bin\Release\Hello.pdb

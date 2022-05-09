@@ -1,0 +1,75 @@
+﻿Lesson 1: Output
+================
+
+ In this tutorial series, I will be teaching you the basics of the C# programming language. C# is a high-level
+programming language built on top of the .NET Framework. For our first lesson, we will be making a simple
+console app that displays "Hello World!" on the screen. Console apps have no GUI. They are text-only applications
+that are typically used for performing simple tasks that don't need to draw any graphics on the screen. Let's get
+started.
+ If you haven't already, download the latest version of Visual Studio (this tutorial was originally made with
+Visual Studio 2010 Express but the same principals apply to newer versions of Visual Studio). After you download
+Visual Studio, install Visual C# Express (on newer version of Visual Studio, install the .NET Desktop Development
+workload). After you have finished this step, start Visual C# Express (or just Visual Studio on newer versions).
+You will see a window with the Visual Studio welcome page. Click File > New Project... and a dialog box will open.
+Choose "Console Application" and name the project "Hello". Depending on your version of Visual Studio, you may need to 
+name the solution file before or after saving the new project. Afterward, you will see a skeleton program like this:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Test
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+        }
+    }
+}
+
+ This is the bare minimum code you can have for a C# console application. If you build and run it, you will just get
+a console window that closes shortly after it opens. Now let's discuss the parts of a C# console application. The
+first few lines import the namespaces we intend to use in our program. The "System" namespace contains the most basic
+classes we will need, the "System.Collections.Generic" namespaces contains useful classes such as lists and queues,
+the "System.Linq" namespace contains [insert description here], and the "System.Text" namespace contains useful
+classes for processing text data. Next we have a namespace with the same name as our app. It is a good idea to always
+place all your code into a namespace for better organization. Inside our namespace we have our "Program" class. Every
+application has to have a program class. When our program is run, the "Main" function will be called. The "Main" function
+must always be delared to be static, however there are different parameters and return values we can use for it. The
+default "Main" function takes an array of strings as its first and only parameter and returns nothing (also known as 
+"void"). Parameters are pieces of data that are passed to a function. The return value is a piece of data that gets
+passed back to the code that called the function. But before our program can do anything meaningful, we will need to
+add code to the body of our function like this:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+namespace Hello
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Say hello
+            Console.WriteLine("Hello World!");
+        }
+    }
+}
+
+ Every line that starts with a two slashes is a comment. Comments are notes for the programmer and will not be executed
+when we run our program. The "Console" class contains functions for manipulating the console window for our application.
+The "WriteLine" method ("method" is another name for a function inside a class), is used to write text to the console
+window. In this case, we write "Hello World!". Please note that text data must be enclosed in quotes. Otherwise you will
+get an error when you try to build your application. Also, every line of code that isn't a namespace, class, function, 
+or control statement must end with a semicolon. Next, we will build our application by right-clicking the project
+in the right pane and choosing "Build". If you get any compile errors, you can double-click each to see where in your
+code the problem is and the error message will indicate what the problem is.
+ If you run the program, you should see "Hello World!" in a console window. If the window disappears before you can read
+it, try adding "Console.ReadLine();" to the bottom of your "Main" function. Then it will pause until you press the Enter
+key.
+ In the next lesson, we will learn how to get input from the user.

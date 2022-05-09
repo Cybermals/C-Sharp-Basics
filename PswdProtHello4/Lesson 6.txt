@@ -1,0 +1,166 @@
+﻿Lesson 6: Classes, Files, and Foreach Loops
+===========================================
+
+ In the previous lesson, we learned how to use structures, arrays, and for loops to add the ability to verify
+credentials for multiple users. However, as our code is right now, we would have to re-compile our code every
+time we needed to add more users. This is problematic, so in this lesson, we will modify our program so it loads
+user credentials from a config file. Let's start by adding a new project called "PswdProtHello4" to our solution and
+copy the code from the previous lesson into the new source file.
+ Now we will change our "User" structure to a class by chaning the "struct" keyword to "class". The difference between a 
+structure and a class is that structures are passed by value (the contents of the structure get copied every time we 
+assign it to a variable) whereas classes are passed by reference (the memory address of the class gets copied every time
+we assign it to a variable). We will also move our class to a separate file. Right-click your project, point to "Add", 
+and choose "Class...". Then name the file "User" and move the "User" class to the new source file. We also need to add
+an empty default constructor to our "User" class:
+
+class User
+{
+    public string name;
+    public string pswd;
+
+    public User()
+    {
+    }
+
+    public User(string name, string pswd)
+    {
+        this.name = name;
+        this.pswd = pswd;
+    }
+}
+
+ Whenever we need to access files, we will need to use the "System.IO" namespace. So add it to the top of the "Program"
+source code file. Next, we need to remove our "users" array and replace it with a "users" list:
+
+static List<User> users = new List<User>();
+
+ A list is a collection of elements that can be resized at any time. We indicate the type of elements it can hold by
+including the element type in angle brackets. Next, we need to create a new function called "LoadUserData":
+
+static bool LoadUserData()
+{
+    //Load user data
+    StreamReader usrCfg;
+
+    try
+    {
+        usrCfg = new StreamReader("data/users.cfg");
+    }
+    catch(IOException)
+    {
+        return false;
+    }
+
+    while(!usrCfg.EndOfStream)
+    {
+        //Next line
+        string line = usrCfg.ReadLine();
+
+        //User section?
+        if(line == "[User]")
+        {
+            //Add new user
+            users.Add(new User());
+        }
+        //User name?
+        else if(line.StartsWith("name = "))
+        {
+            users[users.Count - 1].name = line.Substring(7);
+        }
+        //User password?
+        else if(line.StartsWith("pswd = "))
+        {
+            users[users.Count - 1].pswd = line.Substring(7);
+        }
+    }
+
+    return true;
+}
+
+ The "LoadUserData" function will try to load the user credentials from a config file and if it succeeds, it will return 
+true. Otherwise, it will return false if it fails. To read our config file, we will use a "StreamReader" object called
+"usrCfg". However, attempting to open a file that doesn't exist will cause an exception to be thrown. To handle this, we
+will use a try-catch block. Inside our try statement, we will attempt to open our config file. If it fails, we will catch
+the resulting "IOException" and return false. If the file is successfully opened, we will use a while loop to parse the
+contents of our user config file. A while loop executes the contents of its body over and over until the given condition
+is false. In this case, we will loop while we haven't reached the end of the file. The "!" operator means "not" and
+inverts the value of an expression. At the beginnning of each iteration of our while loop, we will read the next line of
+the file. Then we will compare it with "[User]". If the line is "[User]", we will add a new user to the end of our
+"users" list. If that condition is false, we will see if the line starts with "name = ". If it does, we will set the
+name of the last user to the the text starting with the 8th character in the line. If that condition is false, we will
+see if the line starts with "pswd = ". If it does, we will set the password for the last user in a similar manner.
+Afterward, we will return true. Next, we need to modify our "Main" function like this:
+
+static int Main(string[] args)
+    //Load user data
+    if(!LoadUserData())
+    {
+        Console.WriteLine("Failed to load user data.");
+        return 1;
+    }
+
+    //Get username and password
+    string name = Prompt("Name: ");
+    string pswd = Prompt("Password: ");
+
+    //Verify credentials
+    if(IsValid(name, pswd))
+    {
+        Console.WriteLine("Hello " + name + "!");
+    }
+    else
+    {
+        Console.WriteLine("Your not allowed here " + name + "!");
+    }
+
+    return 0;
+}
+
+ Notice that we have changed the return type to "int". Doing this will allow our program to return a value indicating
+whether or not the program encountered an error. We will call our "LoadUserData" function and if it fails, we will
+display an error message and return 1. Otherwise, we will continue as normal and return 0 at the end. We will also be
+improving the body of our "IsValid" function like this:
+
+//Validate credentials
+foreach(User user in users)
+{
+    //Valid credentials?
+    if(name == user.name && pswd == user.pswd)
+    {
+        return true;
+    }
+}
+
+return false;
+
+ A foreach loop works similar to a for loop, but it is specially designed to help us easily iterate over all the elements
+of a list or array. To use it, we simply give a variable to store each element into and the list or array. Notice that
+this method is a lot cleaner and we no longer have to use indices to access the next user. Last but not least, we will
+need to create the user config file:
+
+[User]
+name = Dylan
+pswd = cheetah
+
+[User]
+name = Fiona
+pswd = fox
+
+[User]
+name = Daniel
+pswd = lion
+
+[User]
+name = Leila
+pswd = lioness
+
+[User]
+name = Serena
+pswd = squirrel
+
+ Copy this and paste it into a new text file. You can create a new text file by right-clicking the project, pointing to
+"Add", and clicking "New Item". Then choose "Text File" and name it "users.cfg". Also, create a new folder called "data" 
+and put the config file inside it. This will improve our project organization. If you build and run the program, you
+will get an error though. To fix this, we need to tell Visual Studio to copy our config file to the output folder. To
+do this, right-click the config file and choose "Properties". Then set "Copy to Output Directory" to "Copy if newer".
+Then build again and the program should work properly.

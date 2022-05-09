@@ -1,0 +1,46 @@
+﻿Lesson 4: Using Custom Functions
+================================
+
+ In the previous lesson, we learned how to use if statements to change the flow of our program. However, as the
+complexity of a program increases, it becomes useful to divide our code into separate functions. This also allows
+us to reuse code which reduces the size of our program. Let's start by adding a new project to our solution called
+"PswdProtHello2" and copying the code from the previous lesson into the new source code file. Now let's add a new
+function to our "Program" class:
+
+static string Prompt(string msg)
+{
+    Console.Write(msg);
+    return Console.ReadLine();
+}
+
+ The "Prompt" function takes one parameter that is the prompt message to display and returns whatever the user typed.
+This will allow us to reuse our prompt code wherever we need to get input from the user. Next we will add another new
+function to our "Program" class:
+
+static bool IsValid(string name, string pswd)
+{
+    return name == "Dylan" & pswd == "cheetah";
+}
+
+ The "IsValid" function takes 2 parameters. The first is the name of the user and the second is the user's password.
+Then the function returns true if the user credentials are valid. For now, this is a simple single-line function.
+But in the next lesson, we will improve it to do more for us. Next, we need to modify the body of our "Main" function
+like this:
+
+//Get username and password
+string name = Prompt("Name: ");
+string pswd = Prompt("Password: ");
+
+//Verify credentials
+if(IsValid(name, pswd))
+{
+    Console.WriteLine("Hello " + name + "!");
+}
+else
+{
+    Console.WriteLine("You aren't allowed here " + name + "!");
+}
+
+ This new simplified code layout uses our new functions and is smaller than our original code layout. It also makes our
+code easier to read and understand.
+ In the next lesson, we will be improving our program so that it can verify credentials for multiple users.

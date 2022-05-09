@@ -1,0 +1,68 @@
+﻿Lesson 5: Structures, Arrays, and For Loops
+===========================================
+
+ In the previous lesson, we tidied up our code by dividing it into multiple functions. However, our program can still
+only verify credentials for just one user. In this lesson, we will add the ability to verify credentials for multiple
+users. Start by adding a new project to your solution called "PswdProtHello3". Then copy the code from the previous
+lesson into the new source code file. Then add this new code above your "Program" class:
+
+struct User
+{
+    public string name;
+    public string pswd;
+
+    public User(string name, string pswd)
+    {
+        this.name = name;
+        this.pswd = pswd;
+    }
+}
+
+ A structure can be used to store multiple pieces of data that are related to each other in a single variable. Our
+new "User" structure contains variables for storing the name and password for a user. The "public" keyword indicates
+that a variable or function should be accessible from outside the structure. The special keyword "this" is used to
+refer to the structure. And the "." operator is used to access a variable or function inside the structure. Every
+function with the same name as the structure and no return type is called a constructor. It gets called whenever we
+create a new instance of the structure. Each constructor can take different parameters too. In this case, our constructor
+simply sets the value of the name and password variables. Also notice that all the variables and functions in our
+structure are not declared to be static. This is because we want a new instance of them for each instance of our
+structure.
+ Next, we are going to create an array of "User" structures inside our "Program" class like this:
+
+static User[] users = {
+                          new User("Dylan", "cheetah"),
+                          new User("Fiona", "fox"),
+                          new User("Daniel", "lion"),
+                          new User("Leila", "lioness"),
+                          new User("Serena", "squirrel")
+                      };
+
+ An array is essentially a list that cannot change size once it has been created. To declare an array, include a pair of
+square brackets after the data type. The integer inside the square brackets indicates the size of the array, however we
+can exclude the integer if we initialize the array with existing data. An array initializer is simply a list of elements
+inside curly braces. In this case, we are going to store 5 user instances into our array. Notice how we can also include
+the initial values of the name and password for each user thanks to our structure constructor. 
+ Next, we are going to modify the body of our "IsValid" function like this:
+
+//Verify credentials
+for(int i = 0; i < users.Length; i++)
+{
+    //Valid credentials?
+    if(name == users[i].name && pswd == users[i].pswd)
+    {
+        return true;
+    }
+}
+
+return false;
+
+ A for loop is used to repeat a set of instructions based on a given variable, condition, and update expression. In this
+case, we will create an integer called "i" with an initial value of 1, loop while "i" is less than the length of our
+"users" array, and increment (add one to) the value of "i" at the end of each iteration of the for loop. Inside our for
+loop we will compare the name and password the user entered with the name and password of the next user in our "users"
+array. Placing an integer in square brackets after the name of an array indicates which element of the array we wish to
+access. The first element has an index of 0 and the last element has an index of the length of the array minus 1. In this
+case, "i" will be the index of the next element in the array. If the name and password match, we will return true which
+will also end the for loop. However, if we reach the end of the array without finding a match, the for loop will end and
+we will return false.
+ In the next lesson, we will learn how to load user credentials from a file instead of using a hard-coded array.

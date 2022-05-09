@@ -1,0 +1,6 @@
+C:\Users\Dylan\Documents\Code\C#\DylanCheetah\Tutorials\Basics\PswdProtHello2\bin\Release\PswdProtHello2.exe
+C:\Users\Dylan\Documents\Code\C#\DylanCheetah\Tutorials\Basics\PswdProtHello2\bin\Release\PswdProtHello2.pdb
+C:\Users\Dylan\Documents\Code\C#\DylanCheetah\Tutorials\Basics\PswdProtHello2\obj\x86\Release\PswdProtHello2.exe
+C:\Users\Dylan\Documents\Code\C#\DylanCheetah\Tutorials\Basics\PswdProtHello2\obj\x86\Release\PswdProtHello2.pdb
+C:\Users\Dylan\Documents\Code\C#\DylanCheetah\Tutorials\Basics\bin\Release\PswdProtHello2.exe
+C:\Users\Dylan\Documents\Code\C#\DylanCheetah\Tutorials\Basics\bin\Release\PswdProtHello2.pdb
